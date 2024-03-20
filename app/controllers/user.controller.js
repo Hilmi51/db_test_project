@@ -1,7 +1,7 @@
 const db = require("../models/index.js");
 const getByUsers = async (req, res) => {
     try {
-        const users = await db.User.findAll({attributes: ['id', 'uuid', 'token', 'nicname', 'name', 'surname', 'gender', 'birth_date', 'profile_photo_url', 'biography', 'email', 'phone_number', 'password', 'create_date', 'delete_date', 'phone_verification', 'email_verification', 'is_active', 'is_admin', 'is_delete']});
+        const users = await db.User.findAll();
         res.status(200).send(users);
     } catch (error) {
         console.log(error);
@@ -11,10 +11,7 @@ const getByUsers = async (req, res) => {
 /*  */
 const getByUserId = async (req, res) => {
     try {
-        const user = await db.User.findOne({
-            where: {id: req.params.id},
-            attributes: ['id', 'uuid', 'token', 'nicname', 'name', 'surname', 'gender', 'birth_date', 'profile_photo_url', 'biography', 'email', 'phone_number', 'password', 'create_date', 'delete_date', 'phone_verification', 'email_verification', 'is_active', 'is_admin', 'is_delete']
-        });
+        const user = await db.User.findOne({where: {id: req.params.id}});
         if (!user) {
             res.status(404).send('User not found');
         }

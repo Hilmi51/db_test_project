@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
+            autoIncrement: true,
         },
         uuid: {
             type: Sequelize.INTEGER,
@@ -97,7 +98,8 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         sequelize,
         modelName: "User",
-        tableName: "user"
+        tableName: "user",
+        timestamps: false,
     });
     return User;
 };
